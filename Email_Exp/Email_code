@@ -1,15 +1,23 @@
 %{
+#include <stdio.h>
 %}
 
 %%
 
-[a-z.0-9_]+@[a-z]+".com"|".in"  { printf(“it is valid”);}
-.+  { printf(“it is not valid”);}
+[a-zA-Z0-9._]+@[a-zA-Z]+\.(com|in)    { printf("It is valid\n"); }
+
+.+                                    { printf("It is not valid\n"); }
+
 %%
-int yywrap(){}
+
+int yywrap()
+{
+    return 1;
+}
 
 int main()
 {
-printf("enter the mail:");
-yylex();
+    printf("Enter the mail: ");
+    yylex();
+    return 0;
 }
